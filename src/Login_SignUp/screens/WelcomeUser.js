@@ -8,58 +8,84 @@ import { IC_Ellipse1, IC_Ellipse2 } from '../assets/icons/index.js';
 const slines = [
   {
     id: 1,
-    image: {IMG_PexelsPhotobyMarleneLeppanen},
+    image: require('../assets/images/WellcomeUser/PexelsPhotobyMarleneLeppanen.png'),
     title: "Fantastic And Modern",
     content: "This is scription for all of the app",
-    image1: {IC_Ellipse1},
-    image2: {IC_Ellipse2},
-    image3: {IC_Ellipse2},
+    image1: require('../assets/icons/WelcomeUser/Ellipse1.png'),
+    image2: require('../assets/icons/WelcomeUser/Ellipse2.png'),
+    image3: require('../assets/icons/WelcomeUser/Ellipse2.png'),
     text: "Continue",
-    // onPress={() => navigation.navigate('SignIn')},
+    onPress: navigation.navigate('SignIn'),
 },
   {
     id: 2,
-    image: {IMG_PexelsPhotobyRAULREYNOSO},
+    image: require('../assets/images/WellcomeUser/PexelsPhotobyRAULREYNOSO.png'),
     title: "Change your mind",
     content: "This is scription for all of the app ",
-    image1: {IC_Ellipse2},
-    image2: {IC_Ellipse1},
-    image3: {IC_Ellipse2},
+    image1: require('../assets/icons/WelcomeUser/Ellipse2.png'),
+    image2: require('../assets/icons/WelcomeUser/Ellipse1.png'),
+    image3: require('../assets/icons/WelcomeUser/Ellipse2.png'),
     text: "Continue",
-    // onPress={() => navigation.navigate('SignIn')},
+    onPress: navigation.navigate('SignIn'),
 },
   {
     id: 3,
-    image: {IMG_PexelsPhotobyJeysTubianosa},
+    image: require('../assets/images/WellcomeUser/PexelsPhotobyJeysTubianosa.png'),
     title: "Level Up Your Style",
     content: "Are your ready to make differences ?",
-    image1: {IC_Ellipse2},
-    image2: {IC_Ellipse2},
-    image3: {IC_Ellipse1},
+    image1: require('../assets/icons/WelcomeUser/Ellipse2.png'),
+    image2: require('../assets/icons/WelcomeUser/Ellipse2.png'),
+    image3: require('../assets/icons/WelcomeUser/Ellipse1.png'),
     text: "Get Started",
-    // onPress={() => navigation.navigate('SignIn')},
+    onPress: navigation.navigate('SignIn'),
 },
 ];
 
-
-const WelcomeUser = props => {
-const {navigation} = props;
-const [status, setStatus] = useState('');
-return (
-    <SafeAreaView style={styles.container}>
-      <WellcomeCard 
-        image={IMG_PexelsPhotobyJeysTubianosa}
-        title="Level Up Your Style"
-        content="Are your ready to make differences ?"
-        image1={IC_Ellipse1}
-        image2={IC_Ellipse1}
-        image3={IC_Ellipse2}
-        text="Get Started"
-        onPress={() => navigation.navigate('SignIn')}
+export default class WelcomeUser extends React.Component {
+// const WelcomeUser = props => {
+  state = {
+    showRealApp: false
+  }
+  _renderItem = ({ item }) => {
+    return (
+      <SafeAreaView style={styles.container}>
+      <WellcomeCard
+        image={item.image}
+        title={item.title}
+        content={item.content}
+        image1={item.image1}
+        image2={item.image2}
+        image3={item.image3}
+        text={item.text}  
+        onPress={item.onPress}
       />
-
-    </SafeAreaView>
+      </SafeAreaView>
     );
+  }
+//   _renderDoneButton = () => {
+//     <CustomButton
+//         type="primary"
+//         text="Continue"
+//         onPress={() => navigation.navigate('SignIn')}
+//     />
+// };
+  _onDone = () => {
+    // User finished the introduction. Show real app through
+    // navigation or simply by controlling state
+    this.setState({ showRealApp: true });
+    // onPress={() => navigation.navigate('SignIn')}
+  }
+  render()
+  {
+    if (this.state.showRealApp) {
+      return <WelcomeUser />;
+    } else {
+      return <AppIntroSlider renderItem={this._renderItem} 
+      data={slines} 
+      onDone={this._onDone}
+      />;
+    }
+  }
 };
 const styles = StyleSheet.create({
 container: {
@@ -67,4 +93,4 @@ container: {
 },
 
 });
-export default WelcomeUser;
+// export default WelcomeUser;

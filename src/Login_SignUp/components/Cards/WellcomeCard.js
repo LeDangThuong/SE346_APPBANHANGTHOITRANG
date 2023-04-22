@@ -49,6 +49,7 @@ return (
             type="primary"
             text={props.text}
             onPress={props.onPress}
+            // onPress={() => navigation.navigate('SignIn')}
           />                
         </View>
 
