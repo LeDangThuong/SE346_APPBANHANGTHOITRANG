@@ -1,22 +1,22 @@
 // export {default as tên icon} from 'đường dẫn';
-export {default as settingicon } from '../icons/OverView/setting.png'
-export {default as messenger } from '../icons/OverView/Messenger.png'
-export {default as notification} from '../icons/OverView/notification.png'
-export {default as chat} from '../icons/OverView/chat.png'
-export {default as order} from '../icons/OverView/order.png'
-export {default as promotion} from '../icons/OverView/promotion.png'
-export {default as product} from '../icons/OverView/product.png'
-export {default as user} from '../icons/OverView/user.png'
-export {default as report} from '../icons/OverView/report.png'
-export {default as back} from '../icons/OverView/BackTo.png'
-export {default as backto} from '../icons/OverView/BackNext.png'
-export {default as StartCorner} from '../icons/OverView/starcorner.png'
-export {default as StartFull} from '../icons/OverView/starfull.png'
-export {default as IC_Down} from '../icons/OverView/down.png'
-export {default as Sold} from '../icons/OverView/sold.png'
-export {default as ViewPerSon} from '../icons/OverView/view.png'
-export {default as WareHouse} from '../icons/OverView/warehouse.png'
-export {default as Love} from '../icons/OverView/love.png'
-export {default as Delivery} from '../icons/OverView/Delivery.png'
-export {default as Address} from '../icons/OverView/Address.png'
-export {default as Payment} from '../icons/OverView/Payment.png'
+export {default as settingicon} from '../icons/OverView/setting.png';
+export {default as messenger} from '../icons/OverView/Messenger.png';
+export {default as notification} from '../icons/OverView/notification.png';
+export {default as chat} from '../icons/OverView/chat.png';
+export {default as order} from '../icons/OverView/order.png';
+export {default as promotion} from '../icons/OverView/promotion.png';
+export {default as product} from '../icons/OverView/product.png';
+export {default as user} from '../icons/OverView/user.png';
+export {default as report} from '../icons/OverView/report.png';
+export {default as back} from '../icons/OverView/BackTo.png';
+export {default as backto} from '../icons/OverView/BackNext.png';
+export {default as StartCorner} from '../icons/OverView/starcorner.png';
+export {default as StartFull} from '../icons/OverView/starfull.png';
+export {default as IC_Down} from '../icons/OverView/down.png';
+export {default as Sold} from '../icons/OverView/sold.png';
+export {default as ViewPerSon} from '../icons/OverView/view.png';
+export {default as WareHouse} from '../icons/OverView/warehouse.png';
+export {default as Love} from '../icons/OverView/love.png';
+export {default as Delivery} from '../icons/OverView/Delivery.png';
+export {default as Address} from '../icons/OverView/Address.png';
+export {default as Payment} from '../icons/OverView/Payment.png';

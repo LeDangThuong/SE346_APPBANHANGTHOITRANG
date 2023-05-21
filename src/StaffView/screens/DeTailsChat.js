@@ -1,10 +1,5 @@
-import { StyleSheet, Text, View } from 'react-native'
-import React from 'react'
-import ChatScreen from '../../CustomerView/screens/ChatScreen'
+import React from 'react';
+import ChatScreen from '../../CustomerView/screens/ChatScreen';
 export default function DeTailsChat(navigation) {
-  return (
-    <ChatScreen></ChatScreen>
-  )
+  return <ChatScreen />;
 }
-
-const styles = StyleSheet.create({})
