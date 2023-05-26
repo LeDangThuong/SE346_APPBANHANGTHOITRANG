@@ -12,6 +12,22 @@ import FONT_FAMILY from '../constants/fonts.js';
 const SignIn = props => {
     const {navigation} = props;
     const [status, setStatus] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [password, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
+
+  // Function to handle login
+    const handleLogin = () => {
+        auth.signInWithEmailAndPassword(phoneNumber, password)
+        .then(() => {
+            console.log('User logged in successfully');
+        // Navigate to another screen
+        })
+        .catch((error) => {
+            console.log('Error when logging in: ', error);
+            setErrorMessage(error.message);
+        });
+  };
     return (
         <SafeAreaView style={styles.container}>
             <HeaderWithBack onPress={() => navigation.goBack()}></HeaderWithBack>
@@ -48,7 +64,7 @@ const SignIn = props => {
                     <CustomButton
                         type="primary"
                         text="Sign in"
-                        onPress={() => navigation.navigate('SignIn')}
+                        onPress={handleLogin()}
                     />
                 </View>
             </View>
