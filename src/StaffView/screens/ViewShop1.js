@@ -22,19 +22,19 @@ const datasdetail = [
   {
     id: '2',
     source: IM_Giay2,
-    title: 'T-Shirt Black Blank - VSD343545D - New Elevent',
+    title: 'T-Shirt White Blank - VSD343545D - New Elevent',
     price: 399999
   },
   {
     id: '3',
     source: IM_Giay3,
-    title: 'T-Shirt Black Blank - VSD343545D - New Elevent',
+    title: 'T-Shirt Blue Blank - VSD343545D - New Elevent',
     price: 399999
   },
   {
     id: '4',
     source: IM_Giay4,
-    title: 'T-Shirt Black Blank - VSD343545D - New Elevent',
+    title: 'T-Shirt Green Blank - VSD343545D - New Elevent',
     price: 399999
   },
 ]
@@ -48,31 +48,31 @@ const datas = [
   {
       id: '2',
       source: IM_Giay2,
-      title: 'T-Shirt Black Blank - VSD343545D - New Elevent',
+      title: 'T-Shirt White Blank - VSD343545D - New Elevent',
       price: 399999
   },
   {
       id: '3',
       source: IM_Giay3,
-      title: 'T-Shirt Black Blank - VSD343545D - New Elevent',
+      title: 'T-Shirt White Blank - VSD343545D - New Elevent',
       price: 399999
   },
   {
       id: '4',
       source: IM_Giay4,
-      title: 'T-Shirt Black Blank - VSD343545D - New Elevent',
+      title: 'T-Shirt White Blank - VSD343545D - New Elevent',
       price: 399999
   },
   {
       id: '5',
       source: IM_Giay3,
-      title: 'T-Shirt Black Blank - VSD343545D - New Elevent',
+      title: 'T-Shirt White Blank - VSD343545D - New Elevent',
       price: 399999
   },
   {
       id: '6',
       source: IM_Giay1,
-      title: 'T-Shirt Black Blank - VSD343545D - New Elevent',
+      title: 'T-Shirt White Blank - VSD343545D - New Elevent',
       price: 399999
   }
 ]
@@ -111,6 +111,9 @@ export const ListItem = [
 function ViewShop1({navigation}){
   const [detail ,setdetail] = useState(false)
   const [product, setproduct] = useState(true)
+
+  // Tìm kiếm sản phẩm
+  const[searchValue, setSearchValue] = useState('')
   if(product == true && detail == false){
   return (
     <SafeAreaView style = {{backgroundColor: CUSTOM_COLOR.White, width: '100%', height: '100%'}}>
@@ -118,6 +121,8 @@ function ViewShop1({navigation}){
     <Search
       placeholder = 'Search in the Shop'
       style = {{width: '80%', height: '50%', backgroundColor: CUSTOM_COLOR.White}}
+      onChangeText = {(value)=>SetSearchValue(value)}
+      value = {searchValue}
     ></Search>
     <Image
       style = {{width: scale(72), height:scale(72),aspectRatio: 1, borderRadius: 55, marginTop: 5}}
@@ -126,7 +131,16 @@ function ViewShop1({navigation}){
     ></Image>
     <Text style={{color: CUSTOM_COLOR.Black, fontSize: 20, fontWeight: 'bold', marginTop: 2}}
     >FAUGET</Text>
-  </View>
+    </View>
+
+   
+    <FlatList
+        data={datas.filter(item => item.title.toLowerCase().includes(searchValue.toLowerCase()))}
+        keyExtractor={item => item.id}
+        renderItem={({ item }) => (
+          <Text style={{ fontSize: 20 }}>{item.title}</Text>
+        )}
+      />
   <View style = {{width: '100%', height:40, flexDirection: 'row'}}>
     <TouchableOpacity style = {{width: '50%',height:'100%',borderBottomWidth: 2, borderColor: CUSTOM_COLOR.Red,alignItems: 'center'}}>
     <Text style = {{marginTop: 5, color: CUSTOM_COLOR.DarkOrange, fontSize: 20 }}>Product</Text>
