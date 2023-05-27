@@ -28,9 +28,9 @@ const Search = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: spacing.l,
-    paddingTop: spacing.l,
-    paddingBottom: spacing.l / 1.5,
+    paddingHorizontal: spacing.s,
+    paddingTop: spacing.s,
+    paddingBottom: spacing.s / 1.5,
   },
   inner: {
     flexDirection: 'row',
