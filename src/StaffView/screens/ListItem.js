@@ -2,8 +2,9 @@ import React from 'react';
 import { FlatList, TouchableOpacity, StyleSheet, Text, Image, View } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
+import FONT_FAMILY from '../constants/fonts';
 
-const ProductList = ({ data}) => {
+const ListItems= ({ data}) => {
   const navigation = useNavigation();
 
   const renderItem = ({ item }) => {
@@ -23,8 +24,8 @@ const ProductList = ({ data}) => {
       data={data}
       renderItem={renderItem}
       keyExtractor={(item) => item.id}
-      numColumns={2}
-      columnWrapperStyle={styles.row}
+      numColumns={1}
+      
       contentContainerStyle={styles.container}
     />
   );
@@ -32,13 +33,13 @@ const ProductList = ({ data}) => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 0, 
-    paddingVertical: 0,
+    paddingHorizontal: 8, 
+    paddingVertical: 16,
   },
   item: {
     margin: 8,
-    height: 250,
-    width: 180,
+    height: 100,
+    width: 380,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 4,
@@ -46,25 +47,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   image: {
-    width: 150,
-    height: 150,
-    
+    width: 80,
+    height: 80,
     borderRadius: 4,
+    marginRight: 280,
+    alignItems: 'flex-start'
    
   },
   title: {
-    fontWeight: 'bold',
-    paddingTop: 0,
-    textAlign: 'right',
-    marginBottom: 200,
+    fontFamily: FONT_FAMILY.Bold,
+    marginBottom: 10,
+
+
   },
-  price: {
-    color: 'red',
-    margin: 1,
-    borderWidth: 1,
-    borderRadius: 10,
-    textAlign: 'center',
-  },
+
   row: {
     flex: 1,
     justifyContent: 'space-between',
@@ -72,4 +68,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default ProductList;
+export default ListItems;

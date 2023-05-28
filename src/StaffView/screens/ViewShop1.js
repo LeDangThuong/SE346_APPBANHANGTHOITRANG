@@ -16,6 +16,7 @@ import ProductList from './ProductList.js';
 import { IM_Giay1,IM_Giay2,IM_Giay3,IM_Giay4 } from '../assets/images/index.js';
 import filter from 'lodash.filter';
 import CustomButtonGroup from '../components/ButtonSorted.tsx';
+import ListItems from './ListItem.js';
 
 const datas = [
   {
@@ -55,22 +56,74 @@ const datas = [
       price: 399999
   }
 ]
+const dataList = [
+  {
+    id: '1',
+    source: IM_Giay1,
+    title: 'LIMITED EDITION SHOES PACKET 2021',
+  },
+  {
+    id: '2',
+    source: IM_Giay1,
+    title: 'LIMITED EDITION SHOES PACKET 2022',
+  },  
+  {
+    id: '3',
+    source: IM_Giay1,
+    title: 'LIMITED EDITION SHOES PACKET 2023',
+  },
+]
 export default function ViewShop1(){
   
-  const [list, setList] = useState(datas);
+  const [currentState, setCurrentState] = useState('flatlist1');
+  const [currentDataList, setCurrentDataList] = useState(datas);
 
-  const [searchList, setSearchList] = useState([]);
+  const [defaultDataList1, setDefaultDataList1] = useState(datas);
+  const [defaultDataList2, setDefaultDataList2] = useState(dataList);
 
+  const [searchResult1, setSearchResult1] = useState([]);
+  const [searchResult2, setSearchResult2] = useState([]);
+
+  const [searchText, setSearchText] = useState('');
+  const [searchResult, setSearchResult] = useState([]); // HANDLE TỰ ĐỘNG
   const handleSearch = (text) => {
-    const filteredData = datas.filter((item) => {
-      return item.title.toLowerCase().includes(text.toLowerCase());
-    });
+  setSearchText(text);
+  let filteredDataList;
+  if (currentState === 'flatlist1') {
+    if (text.length < 1) {
+      setCurrentDataList(defaultDataList1);
+      setSearchResult1([]);
+    } else {
+      filteredDataList = filter(datas, (item) =>
+        item.title.toLowerCase().includes(text.toLowerCase())
+      );
+      setCurrentDataList(filteredDataList);
+    }
+  } else {
+    if (text.length < 1) {
+      setCurrentDataList(defaultDataList2);
+      setSearchResult2([]);
+    } else {
+      filteredDataList = filter(dataList, (item) =>
+        item.title.toLowerCase().includes(text.toLowerCase())
+      );
+      setCurrentDataList(filteredDataList);
+    }
+  }
+};
 
-    setSearchList(filteredData);
+  const handleButton1Click = () => {
+    setCurrentState('flatlist1');
+    setCurrentDataList(datas);
+  };
+
+  const handleButton2Click = () => {
+    setCurrentState('flatlist2');
+    setCurrentDataList(dataList);
   };
   return (
     <ScrollView>
-      <SafeAreaView style = {{flex: 1, marginHorizontal : 0, paddingTop: 20, justifyContent: 'center',alignItems: 'center',}}>
+      <SafeAreaView style = {{flex: 1, marginHorizontal : 0, paddingTop: 20,}}>
       
         <TextInput 
           placeholder='Search in here' 
@@ -78,21 +131,23 @@ export default function ViewShop1(){
           style={styles.searchBox}
           autoCapitialize = "none"
           autoCorrect = {false}
-          value={searchList}
           onChangeText={handleSearch}
+          value={searchText}
+                  
           />
         <View style = {styles.CircleAvatar}>
         </View>
         <Text style = {styles.title}> FAUGET CLOTHES</Text>
-        <CustomButtonGroup/>
-        {setSearchList.length > 0 ?
-          (<ProductList data= {searchList}/>):(
-            <View style={styles.container}>
-            <ProductList data={datas} />
-          </View>
-          )
-        }
-        
+        <CustomButtonGroup 
+        onButton1Click={handleButton1Click}
+        onButton2Click={handleButton2Click}
+        />
+        {currentState === 'flatlist1' ?(
+          <ProductList data = {currentDataList} />
+        ):
+        (
+          <ListItems data = {currentDataList}/>
+        )}
       </SafeAreaView>
     </ScrollView>
   )
@@ -107,7 +162,7 @@ const styles = StyleSheet.create({
   },
   CircleAvatar:{
     margin : 20,
-    marginLeft: 20,
+    marginLeft: 180,
     width: 60,
     height: 60,
     borderRadius: 60/2,
