@@ -37,12 +37,13 @@ const styles = StyleSheet.create({
   },
   item: {
     margin: 8,
+    marginTop: 10,
     height: 250,
     width: 180,
     borderWidth: 1,
     borderColor: '#ccc',
     borderRadius: 4,
-    padding: 8,
+    
     alignItems: 'center',
   },
   image: {

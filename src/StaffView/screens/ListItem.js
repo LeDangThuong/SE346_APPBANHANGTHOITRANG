@@ -1,21 +1,23 @@
 import React from 'react';
-import { FlatList, TouchableOpacity, StyleSheet, Text, Image, View } from 'react-native';
+import { FlatList, TouchableOpacity, StyleSheet, Text, Image, View, ScrollView } from 'react-native';
 
 import { useNavigation } from '@react-navigation/native';
 import FONT_FAMILY from '../constants/fonts';
+import CUSTOM_COLOR from '../constants/colors';
 
-const ListItems= ({ data}) => {
+const ListItems = ({ data }) => {
   const navigation = useNavigation();
 
   const renderItem = ({ item }) => {
     return (
-      <TouchableOpacity onPress={() => navigation.navigate('ViewShop2', { product: item })}>
-        <View style={styles.item}>
-          <Image style={styles.image} source={item.source} resizeMode='cover'/>
-          <Text style={styles.title}>{item.title}</Text>
-          <Text style={styles.price}>{item.price}</Text>
-        </View>
-      </TouchableOpacity>
+
+        <TouchableOpacity onPress={() => navigation.navigate('ViewShop2', { product: item })}>
+          <View style={styles.item}>
+            <Image style={styles.image} source={item.source} resizeMode='cover'/>
+            <Text style={styles.title} numberOfLines={1}>{item.title}</Text>
+          </View>
+        </TouchableOpacity>
+
     );
   };
 
@@ -23,44 +25,41 @@ const ListItems= ({ data}) => {
     <FlatList
       data={data}
       renderItem={renderItem}
-      keyExtractor={(item) => item.id}
-      numColumns={1}
-      
-      contentContainerStyle={styles.container}
+      keyExtractor={(item) => item.id}    
+      numColumns={0}
+      contentContainerStyle={styles.container}  
     />
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 8, 
+    paddingHorizontal: 5, 
     paddingVertical: 16,
   },
   item: {
-    margin: 8,
-    height: 100,
-    width: 380,
-    borderWidth: 1,
-    borderColor: '#ccc',
-    borderRadius: 4,
-    padding: 8,
+    flexDirection: 'row',
     alignItems: 'center',
+    height:100,
+    width: 380,
+    padding: 20,
+    marginVertical: 6,
+    borderWidth: 0.5,
+    borderColor: CUSTOM_COLOR.DarkBlue,
+    borderRadius: 20,
   },
   image: {
-    width: 80,
-    height: 80,
-    borderRadius: 4,
-    marginRight: 280,
-    alignItems: 'flex-start'
-   
+    width: 50,
+    height: 50,
+    borderRadius: 10,
+    margin: 10,
   },
   title: {
+
+    fontSize: 16,
     fontFamily: FONT_FAMILY.Bold,
-    marginBottom: 10,
-
-
+    flexWrap: 'wrap'
   },
-
   row: {
     flex: 1,
     justifyContent: 'space-between',

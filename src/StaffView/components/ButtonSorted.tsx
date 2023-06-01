@@ -3,6 +3,7 @@ import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import CUSTOM_COLOR from '../constants/colors';
 import ProductList from '../screens/ProductList';
 import ListItem from '../screens/ListItem';
+import { ScrollView } from 'react-native-gesture-handler';
 
 interface ButtonSortedProps {
   onButton1Click: () => void;
@@ -12,15 +13,8 @@ interface ButtonSortedProps {
 const CustomButtonGroup = ({onButton1Click, onButton2Click}: ButtonSortedProps) => {
   const [currentList, setCurrentList] = useState('bestsellers');
 
-  const showBestSellers = () => {
-    setCurrentList('bestsellers');
-  };
-
-  const showLatestProducts = () => {
-    setCurrentList('latestProducts');
-  };
-
   return (
+    <ScrollView>
     <View style={styles.container}>
       <View style={styles.buttonContainer}>
         <TouchableOpacity style={styles.button} onPress={onButton1Click}>
@@ -30,8 +24,8 @@ const CustomButtonGroup = ({onButton1Click, onButton2Click}: ButtonSortedProps) 
           <Text style={styles.buttonText}>List Items</Text>
         </TouchableOpacity>
       </View>
-
     </View>
+    </ScrollView>
   );
 };
 
@@ -45,12 +39,12 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    marginVertical: 10,
     backgroundColor: CUSTOM_COLOR.Carnation,
   },
   button: {
     padding: 10,
     borderRadius: 5,
+    marginRight: 50,
   },
   buttonText: {
     color: CUSTOM_COLOR.Black,

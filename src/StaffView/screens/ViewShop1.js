@@ -17,6 +17,7 @@ import { IM_Giay1,IM_Giay2,IM_Giay3,IM_Giay4 } from '../assets/images/index.js';
 import filter from 'lodash.filter';
 import CustomButtonGroup from '../components/ButtonSorted.tsx';
 import ListItems from './ListItem.js';
+import Dropdown from '../components/DropDownPicker.tsx';
 
 const datas = [
   {
@@ -72,6 +73,21 @@ const dataList = [
     source: IM_Giay1,
     title: 'LIMITED EDITION SHOES PACKET 2023',
   },
+  {
+    id: '4',
+    source: IM_Giay1,
+    title: 'LIMITED EDITION T-SHIRT PACKET 2021',
+  },
+  {
+    id: '5',
+    source: IM_Giay1,
+    title: 'LIMITED EDITION T-SHIRT PACKET 2022',
+  },  
+  {
+    id: '6',
+    source: IM_Giay1,
+    title: 'LIMITED EDITION T-SHIRT PACKET 2023',
+  },
 ]
 export default function ViewShop1(){
   
@@ -112,44 +128,52 @@ export default function ViewShop1(){
   }
 };
 
-  const handleButton1Click = () => {
+  const handleButtonProductClick = () => {
     setCurrentState('flatlist1');
     setCurrentDataList(datas);
   };
 
-  const handleButton2Click = () => {
+  const handleButtonListItemsClick = () => {
     setCurrentState('flatlist2');
     setCurrentDataList(dataList);
   };
   return (
-    <ScrollView>
-      <SafeAreaView style = {{flex: 1, marginHorizontal : 0, paddingTop: 20,}}>
-      
-        <TextInput 
-          placeholder='Search in here' 
-          clearButtonMode='always' 
-          style={styles.searchBox}
-          autoCapitialize = "none"
-          autoCorrect = {false}
-          onChangeText={handleSearch}
-          value={searchText}
-                  
-          />
-        <View style = {styles.CircleAvatar}>
+
+
+        <SafeAreaView style = {{flex: 1, marginHorizontal:10, paddingHorizontal: 0, marginTop: 10,}}>    
+      <View>
+          <TextInput 
+            placeholder='Search in here' 
+            clearButtonMode='always' 
+            style={styles.searchBox}
+            autoCapitialize = "none"
+            autoCorrect = {false}
+            onChangeText={handleSearch}
+            value={searchText}
+            
+            />
+          <View style = {styles.CircleAvatar}></View>
+          <Text style = {styles.title}> FAUGET CLOTHES</Text>
+          
+          <View style = {{marginTop: 10, marginBottom:10}}>
+            <CustomButtonGroup 
+              onButton1Click={handleButtonProductClick}
+              onButton2Click={handleButtonListItemsClick}
+            />
+            </View>
+            <Dropdown/>
+            
+          {currentState === 'flatlist1' ?(
+            <ProductList data = {currentDataList} />
+          ):
+          (
+            <ListItems data = {currentDataList}/>
+          )}
+          
         </View>
-        <Text style = {styles.title}> FAUGET CLOTHES</Text>
-        <CustomButtonGroup 
-        onButton1Click={handleButton1Click}
-        onButton2Click={handleButton2Click}
-        />
-        {currentState === 'flatlist1' ?(
-          <ProductList data = {currentDataList} />
-        ):
-        (
-          <ListItems data = {currentDataList}/>
-        )}
       </SafeAreaView>
-    </ScrollView>
+
+      
   )
 }
 
@@ -161,11 +185,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   CircleAvatar:{
-    margin : 20,
-    marginLeft: 180,
-    width: 60,
-    height: 60,
-    borderRadius: 60/2,
+    margin:10,
+    marginLeft: 160,
+    width: 80,
+    height: 80,
+    borderRadius: 80/2,
     backgroundColor: CUSTOM_COLOR.DarkBlue,
     justifyContent: 'center',
     alignItems: 'center',
@@ -221,8 +245,6 @@ const styles = StyleSheet.create({
   title:{
     font: FONT_FAMILY.Bold,
     color: CUSTOM_COLOR.DarkBlue,
-    marginBottom: 10,
-    
     fontSize: 25,
     textAlign : 'center',
     alignItems: 'center',
